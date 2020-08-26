@@ -1,6 +1,8 @@
 ﻿namespace TestApiRunner.NUnit
 {
     using System.IO;
+    using System.Linq;
+    using System.Net;
     using System.Xml;
     using System.Xml.Serialization;
     using global::NUnit.Engine;
@@ -42,20 +44,18 @@
 
                 var filterService = nunitEngine.Services.GetService<ITestFilterService>();
                 ITestFilterBuilder builder = filterService.GetTestFilterBuilder();
+                builder.AddTest("SampleUnderTest.Tests.NUnit.Tests.AddWithGivenInputsReturnsExpectedResults");
 
-                ////Note : this is not working 
-                ////builder.AddTest("MutationSubject.Tests.NUnit.Tests.AddWithGivenInputsReturnsExpectedResults");
-
-                TestFilter emptyFilter = builder.GetFilter();
+                var filter = builder.GetFilter();
                 var testListener = new MyTestEventListener();
 
                 // Get a runner for the test package
                 using (ITestRunner runner = nunitEngine.GetRunner(package))
                 {
                     // Run all the tests in the assembly
-                    var testResult = runner.Run(testListener, emptyFilter);
-                    var deserialized = Deserialize<TestRun>(testResult);
-                    System.Console.WriteLine(deserialized.TestSuites[0].TestCaseCount);
+                    var testResult = runner.Run(testListener, filter);
+                    var deserializedTestResults = Deserialize<TestRun>(testResult);
+                    System.Console.WriteLine(deserializedTestResults.TestSuites[0].Total);
                 }
             }
         }
