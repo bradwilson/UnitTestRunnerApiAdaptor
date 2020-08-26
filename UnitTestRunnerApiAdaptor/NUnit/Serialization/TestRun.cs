@@ -11,6 +11,6 @@
         public List<string> CommandLine { get; set; }
 
         [XmlElement(ElementName = "test-suite")]
-        public List<Testsuite> TestSuite { get; set; }
+        public List<TestSuite> TestSuites { get; set; }
     }
 }

@@ -1,14 +1,12 @@
 ﻿namespace TestApiRunner.NUnit.Serialization
 {
+    using System.Collections.Generic;
     using System.Xml.Serialization;
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:Elements should be documented", Justification = "Not required for XML Serialization")]
     [XmlRoot(ElementName = "test-suite")]
-    public class Testsuite
+    public class TestSuite
     {
-        [XmlElement(ElementName = "test-case")]
-        public TestCase TestCase { get; set; }
-
         [XmlAttribute(AttributeName = "type")]
         public string Type { get; set; }
 
@@ -19,22 +17,22 @@
         public string Name { get; set; }
 
         [XmlAttribute(AttributeName = "fullname")]
-        public string Fullname { get; set; }
+        public string FullName { get; set; }
 
         [XmlAttribute(AttributeName = "classname")]
-        public string Classname { get; set; }
+        public string ClassName { get; set; }
 
         [XmlAttribute(AttributeName = "runstate")]
-        public string Runstate { get; set; }
+        public string RunState { get; set; }
 
         [XmlAttribute(AttributeName = "testcasecount")]
-        public string Testcasecount { get; set; }
+        public string TestCaseCount { get; set; }
 
         [XmlAttribute(AttributeName = "result")]
         public string Result { get; set; }
 
         [XmlAttribute(AttributeName = "start-time")]
-        public string Starttime { get; set; }
+        public string StartTime { get; set; }
 
         [XmlAttribute(AttributeName = "end-time")]
         public string Endtime { get; set; }
@@ -62,5 +60,11 @@
 
         [XmlAttribute(AttributeName = "asserts")]
         public string Asserts { get; set; }
+
+        [XmlElement(ElementName = "test-suite")]
+        public List<TestSuite> TestSuites { get; set; }
+
+        [XmlElement(ElementName = "test-case")]
+        public List<TestCase> TestCases { get; set; }
     }
 }

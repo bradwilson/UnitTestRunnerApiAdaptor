@@ -43,6 +43,9 @@
                 var filterService = nunitEngine.Services.GetService<ITestFilterService>();
                 ITestFilterBuilder builder = filterService.GetTestFilterBuilder();
 
+                ////Note : this is not working 
+                ////builder.AddTest("MutationSubject.Tests.NUnit.Tests.AddWithGivenInputsReturnsExpectedResults");
+
                 TestFilter emptyFilter = builder.GetFilter();
                 var testListener = new MyTestEventListener();
 
@@ -52,6 +55,7 @@
                     // Run all the tests in the assembly
                     var testResult = runner.Run(testListener, emptyFilter);
                     var deserialized = Deserialize<TestRun>(testResult);
+                    System.Console.WriteLine(deserialized.TestSuites[0].TestCaseCount);
                 }
             }
         }

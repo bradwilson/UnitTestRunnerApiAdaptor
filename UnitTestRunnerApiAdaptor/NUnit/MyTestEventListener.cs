@@ -17,7 +17,7 @@ namespace TestApiRunner.NUnit
         /// <param name="report">The test event report.</param>
         public void OnTestEvent(string report)
         {
-            System.Console.WriteLine(report);
+            /// System.Console.WriteLine(report);
         }
     }
 }
