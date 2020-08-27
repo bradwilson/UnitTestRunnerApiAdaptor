@@ -1,7 +1,3 @@
-// <copyright file="MyTestEventListener.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
-// </copyright>
-
 namespace TestApiRunner.NUnit
 {
     using global::NUnit.Engine;

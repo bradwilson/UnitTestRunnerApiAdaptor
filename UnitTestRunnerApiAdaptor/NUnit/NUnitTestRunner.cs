@@ -1,8 +1,6 @@
 ﻿namespace TestApiRunner.NUnit
 {
     using System.IO;
-    using System.Linq;
-    using System.Net;
     using System.Xml;
     using System.Xml.Serialization;
     using global::NUnit.Engine;
@@ -31,7 +29,7 @@
             https://stackoverflow.com/questions/62038734/
             */
 
-            var dllFolder = @"C:\Users\james\source\repos\UnitTestRunnerApiAdaptor\SampleUnderTest.NUnit\bin\Debug\netcoreapp3.1";
+            var dllFolder = @"C:\Users\james\source\repos\jameswiseman76\UnitTestRunnerApiAdaptor\SampleUnderTest.NUnit\bin\Debug\netcoreapp3.1";
             var dllFile = "SampleUnderTest.Tests.NUnit.dll";
             var dllFullPath = Path.Combine(dllFolder, dllFile);
 
@@ -44,7 +42,7 @@
 
                 var filterService = nunitEngine.Services.GetService<ITestFilterService>();
                 ITestFilterBuilder builder = filterService.GetTestFilterBuilder();
-                builder.AddTest("SampleUnderTest.Tests.NUnit.Tests.AddWithGivenInputsReturnsExpectedResults");
+                /// builder.AddTest("SampleUnderTest.Tests.NUnit.Tests.AddWithGivenInputsReturnsExpectedResults");
 
                 var filter = builder.GetFilter();
                 var testListener = new MyTestEventListener();

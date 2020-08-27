@@ -18,6 +18,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleUnderTest", "SampleUn
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleUnderTest.Tests.NUnit", "SampleUnderTest.NUnit\SampleUnderTest.Tests.NUnit.csproj", "{CFBDF10D-BC7A-4FBF-ADC1-3ADD11ED4EAE}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTestRunnerAdaptor.Tests", "UnitTestRunnerAdaptor.Tests\UnitTestRunnerAdaptor.Tests.csproj", "{E3F9B904-1A91-492C-8E6A-942ED7CB4EB4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,6 +42,10 @@ Global
 		{CFBDF10D-BC7A-4FBF-ADC1-3ADD11ED4EAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CFBDF10D-BC7A-4FBF-ADC1-3ADD11ED4EAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CFBDF10D-BC7A-4FBF-ADC1-3ADD11ED4EAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3F9B904-1A91-492C-8E6A-942ED7CB4EB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3F9B904-1A91-492C-8E6A-942ED7CB4EB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3F9B904-1A91-492C-8E6A-942ED7CB4EB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3F9B904-1A91-492C-8E6A-942ED7CB4EB4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
