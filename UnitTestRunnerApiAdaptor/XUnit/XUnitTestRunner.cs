@@ -1,4 +1,7 @@
-﻿namespace UnitTestRunnerApiAdaptor.XUnit
+﻿/// <summary>
+/// Main XUnit test runner class
+/// </summary>
+namespace UnitTestRunnerApiAdaptor.XUnit
 {
     using System;
     using System.IO;
@@ -19,7 +22,7 @@
         private static readonly ManualResetEvent Finished = new ManualResetEvent(false);
 
         /// <summary>
-        /// Main entry point into the NUnit test runner.
+        /// Main entry point into the XUnit test runner.
         /// </summary>
         public static void Run()
         {
