@@ -42,7 +42,7 @@
 
                 var filterService = nunitEngine.Services.GetService<ITestFilterService>();
                 ITestFilterBuilder builder = filterService.GetTestFilterBuilder();
-                /// builder.AddTest("SampleUnderTest.Tests.NUnit.Tests.AddWithGivenInputsReturnsExpectedResults");
+                //// builder.AddTest("SampleUnderTest.Tests.NUnit.Tests.AddWithGivenInputsReturnsExpectedResults");
 
                 var filter = builder.GetFilter();
                 var testListener = new MyTestEventListener();
