@@ -10,8 +10,8 @@
     {
         static void Main(string[] args)
         {
-            MSTestRunner.Run();
-            //XUnitTestRunner.Run();
+            //MSTestRunner.Run();
+            XUnitTestRunner.Run();
             //NUnitTestRunner.Run();
         }
     }
