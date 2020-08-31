@@ -37,6 +37,9 @@
     <Reference Include="Microsoft.VisualStudio.TestPlatform.Extensions.VSTestIntegration">
       <HintPath>..\Dependencies\MSTest\Microsoft.VisualStudio.TestPlatform.Extensions.VSTestIntegration.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter">
+      <HintPath>..\Dependencies\MSTest\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualStudio.TestPlatform.ObjectModel">
       <HintPath>..\Dependencies\MSTest\Microsoft.VisualStudio.TestPlatform.ObjectModel.dll</HintPath>
     </Reference>

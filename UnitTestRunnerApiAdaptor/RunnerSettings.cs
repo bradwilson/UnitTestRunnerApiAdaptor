@@ -11,9 +11,15 @@
         /// Initializes a new instance of the <see cref="RunnerSettings"/> class.
         /// </summary>
         /// <param name="testAssemblyFullPath">Sets the full path of the test assembly whose test we are wating to execute.</param>
-        public RunnerSettings(string testAssemblyFullPath)
+        /// <param name="fullyQualifiedNamesOfTestsToRun">
+        /// A list of test names to run. Fully qualified with Namespace.TestClass.TestMethod.
+        /// </param>
+        public RunnerSettings(
+            string testAssemblyFullPath,
+            ImmutableList<string> fullyQualifiedNamesOfTestsToRun)
         {
             this.TestAssemblyFullPath = testAssemblyFullPath;
+            this.TestsToRun = fullyQualifiedNamesOfTestsToRun;
         }
 
         /// <summary>
@@ -25,11 +31,5 @@
         /// Gets the property denoting the list of tests to run. If this is omitted, all tests are run.
         /// </summary>
         public ImmutableList<string> TestsToRun { get; private set; }
-
-        /// <summary>
-        /// Gets a value indicating whether all tests in the given assembly are to be run.
-        /// </summary>
-        public bool RunAllTests { get => this.TestsToRun.Count == 0; }
- 
     }
 }
