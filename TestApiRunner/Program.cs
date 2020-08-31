@@ -2,6 +2,7 @@
 {
     using System;
     using TestApiRunner.NUnit;
+    using UnitTestRunnerApiAdaptor.MSTest;
     using UnitTestRunnerApiAdaptor.XUnit;
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:Elements should be documented", Justification = "Not required for XML Serialization")]
@@ -9,7 +10,8 @@
     {
         static void Main(string[] args)
         {
-            XUnitTestRunner.Run();
+            MSTestRunner.Run();
+            //XUnitTestRunner.Run();
             //NUnitTestRunner.Run();
         }
     }
