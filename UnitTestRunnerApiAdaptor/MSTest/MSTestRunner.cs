@@ -21,35 +21,35 @@ namespace UnitTestRunnerApiAdaptor.MSTest
         {
             //// https://social.msdn.microsoft.com/Forums/vstudio/en-US/ccd08ce1-a86b-4965-af68-1db8cd7d6715/how-to-execute-test-methods-programmatically-using-c-may-be-using-reflection?forum=vsunittest
 
-            var dllFolder =  @"C:\Users\james\source\repos\jameswiseman76\UnitTestRunnerApiAdaptor\SampleUnderTest.Test.MSTest\bin\Debug\netcoreapp3.1";
+            var dllFolder = @"C:\Users\james\source\repos\jameswiseman76\UnitTestRunnerApiAdaptor\SampleUnderTest.Test.MSTest\bin\Debug\netcoreapp3.1";
             var deploymentPath = DeployItems(dllFolder);
 
             var dllFile = "SampleUnderTest.Test.MSTest.dll";
-            var dllFullPath = Path.Combine(dllFolder, dllFile);
+            var dllFullPath = Path.Combine(deploymentPath, dllFile);
 
-            ////var dllName = "Name_Assembly_ThatHas_TestMethods";
             var nameOfTestClass = "SampleUnderTest.Test.MSTest.MathServiceTests";
-            var nameOfTestMethod = "AddWithGivenInputsReturnsExpectedResults";
 
-            var testRunner = new UnitTestRunner(deploymentPath, dllFile, false, 1000);
+            var testRunner = new UnitTestRunner(deploymentPath, dllFullPath, false, 1000);
 
-            // Set the test run properties
-            var properties = PrepareTestRunProperties(deploymentPath, nameOfTestClass, nameOfTestMethod);
+            //// var testResults = testRunner.RunDataDrivenTest(nameOfTestMethod, nameOfTestClass, false, properties);
+            //// var testResults = testRunner.RunDataDrivenTest(nameOfTestMethod, nameOfTestClass, false);
 
-            var testMethod = new TestMethod(nameOfTestMethod, nameOfTestClass, dllFile, false);
-            var testElement = new UnitTestElement(testMethod);
-            // var testResults = testRunner.RunDataDrivenTest(nameOfTestMethod, nameOfTestClass, false, properties);
-            // var testResults = testRunner.RunDataDrivenTest(nameOfTestMethod, nameOfTestClass, false);
-
-            var testResults = new[] { testRunner.RunSingleTest(nameOfTestMethod, nameOfTestClass, false) };
-
-            if (testResults[0].Outcome == UnitTestOutcome.Passed)
+            var testResults = new Dictionary<string, UnitTestResult>
             {
-                Console.WriteLine("Test Case Passed");
-            }
-            else
+                { "AddWithGivenInputsReturnsExpectedResults", testRunner.RunSingleTest("AddWithGivenInputsReturnsExpectedResults", nameOfTestClass, false) },
+                { "DoSomethingDoesABunchOfStuff", testRunner.RunSingleTest("DoSomethingDoesABunchOfStuff", nameOfTestClass, false) },
+            };
+
+            foreach (var result in testResults)
             {
-                Console.WriteLine("Test Case Failed with error " + testResults[0].ErrorMessage);
+                if (result.Value.Outcome == UnitTestOutcome.Passed)
+                {
+                    Console.WriteLine($"{result.Key} Test Case Passed");
+                }
+                else
+                {
+                    Console.WriteLine($"{result.Key} Test Case Failed with error ${result.Value.ErrorMessage}");
+                }
             }
         }
 
@@ -62,14 +62,11 @@ namespace UnitTestRunnerApiAdaptor.MSTest
             }
 
             DateTime dt = DateTime.Now;
-            var dirName = $"Deploy_{Environment.UserName} {dt.Day}-{dt.Month}-{dt.Year} {dt.Hour}_{dt.Minute}_{dt.Second}_{dt.Millisecond}";
+            var dirName = $"Deploy_{Environment.UserName} {dt.Year:D2}-{dt.Month:D2}-{dt.Day:D2} {dt.Hour:D2}_{dt.Minute:D2}_{dt.Second:D2}_{dt.Millisecond}";
 
             var dirInfo = Directory.CreateDirectory(Path.Combine(deploymentPath, dirName));
-            var dirIn = Directory.CreateDirectory(Path.Combine(dirInfo.FullName, "In"));
-            Directory.CreateDirectory(Path.Combine(dirIn.FullName, Environment.MachineName));
-            var dirOut = Directory.CreateDirectory(Path.Combine(dirInfo.FullName, "Out"));
 
-            DirectoryCopy(source, dirOut.FullName, true);
+            DirectoryCopy(source, dirInfo.FullName, true);
 
             return dirInfo.FullName;
         }

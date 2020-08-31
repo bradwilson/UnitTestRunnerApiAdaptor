@@ -19,5 +19,18 @@ namespace SampleUnderTest.Test.MSTest
             Assert.AreEqual(expected, actual);
         }
 
+        [TestMethod]
+        public void DoSomethingDoesABunchOfStuff()
+        {
+            // Arrange
+            var expected = 50;
+            var underTest = new MathService();
+
+            // Act
+            var actual = underTest.DoSomething(true, 10, 10);
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
