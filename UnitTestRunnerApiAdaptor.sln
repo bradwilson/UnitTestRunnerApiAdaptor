@@ -11,6 +11,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 		LICENSE = LICENSE
+		Dependencies\MSTest\Microsoft.TestPlatform.CoreUtilities.dll = Dependencies\MSTest\Microsoft.TestPlatform.CoreUtilities.dll
+		Dependencies\MSTest\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll = Dependencies\MSTest\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+		Dependencies\MSTest\Microsoft.VisualStudio.TestPlatform.Extensions.VSTestIntegration.dll = Dependencies\MSTest\Microsoft.VisualStudio.TestPlatform.Extensions.VSTestIntegration.dll
+		Dependencies\MSTest\Microsoft.VisualStudio.TestPlatform.ObjectModel.dll = Dependencies\MSTest\Microsoft.VisualStudio.TestPlatform.ObjectModel.dll
+		Dependencies\MSTest\Microsoft.VisualStudio.TestPlatform.TestFramework.dll = Dependencies\MSTest\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
 		README.md = README.md
 	EndProjectSection
 EndProject
@@ -20,9 +25,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleUnderTest.Tests.NUnit
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTestRunnerAdaptor.Tests", "UnitTestRunnerAdaptor.Tests\UnitTestRunnerAdaptor.Tests.csproj", "{E3F9B904-1A91-492C-8E6A-942ED7CB4EB4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleUnderTest.Tests.XUnit", "SampleUnderTest.Tests.XUnit\SampleUnderTest.Tests.XUnit.csproj", "{D4A008B7-BE25-4024-A335-FED61F4E2897}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleUnderTest.Tests.XUnit", "SampleUnderTest.Tests.XUnit\SampleUnderTest.Tests.XUnit.csproj", "{D4A008B7-BE25-4024-A335-FED61F4E2897}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleUnderTest.Test.MSTest", "SampleUnderTest.Test.MSTest\SampleUnderTest.Test.MSTest.csproj", "{6E70F406-29E3-4D55-B504-7A51E9980136}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleUnderTest.Test.MSTest", "SampleUnderTest.Test.MSTest\SampleUnderTest.Test.MSTest.csproj", "{6E70F406-29E3-4D55-B504-7A51E9980136}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
