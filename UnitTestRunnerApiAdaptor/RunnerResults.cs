@@ -6,12 +6,11 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="RunnerResults"/> class.   Constructor. </summary>
         /// <param name="success">
-        /// A value indicating whether the test run was a success. 
+        /// A value indicating whether the test run was a success.
         /// </param>
         /// <param name="testRunnerType">
         /// Gets the value denoting the type of the test runner to run.
         /// </param>
-
         public RunnerResults(bool success, TestRunnerType testRunnerType)
         {
             this.Success = success;

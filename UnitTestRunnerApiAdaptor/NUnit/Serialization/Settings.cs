@@ -4,6 +4,7 @@
     using System.Xml.Serialization;
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:Elements should be documented", Justification = "Not required for XML Serialization")]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "CA2227:Collection properties should be read only", Justification = "Not required for XML Serialization")]
     [XmlRoot(ElementName = "settings")]
     public class Settings
     {

@@ -41,7 +41,7 @@ namespace UnitTestRunnerApiAdaptor.XUnit
 
             //// http://stackoverflow.com/questions/22616239/getting-the-path-of-a-nuget-package-programmatically
             ////
-            //// This returns the URI of the assembly containing the 'MyClass' type, 
+            //// This returns the URI of the assembly containing the 'MyClass' type,
             //// e.g.: file:///C:\temp\myassembly.dll
             //// var codeBase = typeof(MyClass).Assembly.CodeBase;
 
