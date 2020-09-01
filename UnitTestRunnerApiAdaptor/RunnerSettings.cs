@@ -31,5 +31,10 @@
         /// Gets the property denoting the list of tests to run. If this is omitted, all tests are run.
         /// </summary>
         public ImmutableList<string> TestsToRun { get; private set; }
+
+        /// <summary>
+        /// Gets the proeprty denoting the type of the test runner to run.
+        /// </summary>
+        public TestRunnerType TestRunnerType { get; private set; }
     }
 }

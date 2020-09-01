@@ -2,6 +2,7 @@
 {
     using System;
     using TestApiRunner.NUnit;
+    using UnitTestRunnerApiAdaptor;
     using UnitTestRunnerApiAdaptor.MSTest;
     using UnitTestRunnerApiAdaptor.XUnit;
 
@@ -10,9 +11,24 @@
     {
         static void Main(string[] args)
         {
-            MSTestRunner.Run();
-            //XUnitTestRunner.Run();
-            //NUnitTestRunner.Run();
+            var msTestResults = new TestRunner<MSTestRunner>()
+                .WithRunnerSettings(new RunnerSettings("", null))
+                .Run();
+
+            Console.WriteLine(msTestResults.Success);
+
+            var nunitResults = new TestRunner<NUnitTestRunner>()
+                .WithRunnerSettings(new RunnerSettings("", null))
+                .Run();
+
+            Console.WriteLine(nunitResults.Success);
+
+            var xunitResults = new TestRunner<XUnitTestRunner>()
+                .WithRunnerSettings(new RunnerSettings("", null))
+                .Run();
+
+            Console.WriteLine(xunitResults.Success);
+
         }
     }
 }

@@ -5,16 +5,27 @@
     using System.Xml.Serialization;
     using global::NUnit.Engine;
     using TestApiRunner.NUnit.Serialization;
+    using UnitTestRunnerApiAdaptor;
 
     /// <summary>
     /// Entry point to the main NUnit test runner.
     /// </summary>
-    public static class NUnitTestRunner
+    public class NUnitTestRunner : ITestRunner<NUnitTestRunner>
     {
-        /// <summary>
-        /// Main entry point into the NUnit test runner.
-        /// </summary>
-        public static void Run()
+        private RunnerSettings runnerSettings;
+
+        /// <summary>   Include runner settings for the test run. </summary>
+        /// <param name="runnerSettings">   The runner settings. </param>
+        /// <returns>   The current instance of this TestRunner. </returns>
+        public ITestRunner<NUnitTestRunner> WithRunnerSettings(RunnerSettings runnerSettings)
+        {
+            this.runnerSettings = runnerSettings;
+            return this;
+        }
+
+        /// <summary>   Runs the tests. </summary>
+        /// <returns>   The Results of the test run. </returns>
+        public RunnerResults Run()
         {
             /*
             Bit of a pain, but got this working!
@@ -55,6 +66,8 @@
                     var deserializedTestResults = Deserialize<TestRun>(testResult);
                     System.Console.WriteLine(deserializedTestResults.TestSuites[0].Total);
                 }
+
+                return new RunnerResults(true, TestRunnerType.NUnit);
             }
         }
 

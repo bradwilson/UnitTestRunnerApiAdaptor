@@ -12,7 +12,7 @@ namespace UnitTestRunnerApiAdaptor.XUnit
     /// <summary>
     /// Entry point to the main XUnit test runner.
     /// </summary>
-    public static class XUnitTestRunner
+    public class XUnitTestRunner : ITestRunner<XUnitTestRunner>
     {
         // We use consoleLock because messages can arrive in parallel, so we want to make sure we get
         // consistent console output.
@@ -21,10 +21,20 @@ namespace UnitTestRunnerApiAdaptor.XUnit
         // Use an event to know when we're done
         private static readonly ManualResetEvent Finished = new ManualResetEvent(false);
 
-        /// <summary>
-        /// Main entry point into the XUnit test runner.
-        /// </summary>
-        public static void Run()
+        private RunnerSettings runnerSettings;
+
+        /// <summary>   Include runner settings for the test run. </summary>
+        /// <param name="runnerSettings">   The runner settings. </param>
+        /// <returns>   The current instance of this TestRunner. </returns>
+        public ITestRunner<XUnitTestRunner> WithRunnerSettings(RunnerSettings runnerSettings)
+        {
+            this.runnerSettings = runnerSettings;
+            return this;
+        }
+
+        /// <summary>   Runs the tests. </summary>
+        /// <returns>   The Results of the test run. </returns>
+        public RunnerResults Run()
         {
             //// https://github.com/xunit/xunit/issues/542
             //// https://github.com/xunit/samples.xunit/blob/main/TestRunner/Program.cs
@@ -61,6 +71,8 @@ namespace UnitTestRunnerApiAdaptor.XUnit
                 Finished.WaitOne();
                 Finished.Dispose();
             }
+
+            return new RunnerResults(true, TestRunnerType.NUnit);
         }
 
         private static void OnDiscoveryComplete(DiscoveryCompleteInfo info)
