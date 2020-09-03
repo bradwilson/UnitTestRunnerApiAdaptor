@@ -1,7 +1,6 @@
 namespace SampleUnderTest.Tests.XUnit
 {
     using Prime.Services;
-    using System;
     using Xunit;
 
     public class UnitTest1

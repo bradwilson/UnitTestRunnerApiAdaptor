@@ -4,9 +4,10 @@
 namespace UnitTestRunnerApiAdaptor.Runners.XUnit
 {
     using System;
-    using System.IO;
+    using System.Linq;
     using System.Reflection;
     using System.Threading;
+
     using Xunit.Runners;
 
     /// <summary>
@@ -36,43 +37,28 @@ namespace UnitTestRunnerApiAdaptor.Runners.XUnit
         /// <returns>   The Results of the test run. </returns>
         public TestRunnerResults Run()
         {
-            //// https://github.com/xunit/xunit/issues/542
-            //// https://github.com/xunit/samples.xunit/blob/main/TestRunner/Program.cs
+            var assembly = Assembly.LoadFrom(this.runnerSettings.TestAssemblyFullName);
 
-            //// http://stackoverflow.com/questions/22616239/getting-the-path-of-a-nuget-package-programmatically
-            ////
-            //// This returns the URI of the assembly containing the 'MyClass' type,
-            //// e.g.: file:///C:\temp\myassembly.dll
-            //// var codeBase = typeof(MyClass).Assembly.CodeBase;
+            using var runner = AssemblyRunner.WithoutAppDomain(assembly.Location);
 
-            //// This return the file path without any of the URI qualifiers
-            //// var location = new Uri(codeBase).LocalPath;
-            //// var assembly = Assembly.Load(new AssemblyName("SampleUnderTest.Tests.XUnit"));
+            runner.OnDiscoveryComplete = OnDiscoveryComplete;
+            runner.OnExecutionComplete = OnExecutionComplete;
+            runner.OnTestPassed = OnTestPassed;
+            runner.OnTestFailed = OnTestFailed;
+            runner.OnTestSkipped = OnTestSkipped;
+            runner.TestCaseFilter =
+                f => this.runnerSettings.TestsToRun.Any(
+                    t => t.TestClassName == f.TestMethod.TestClass.Class.Name &&
+                            t.TestName == f.TestMethod.Method.Name);
 
-            var dllFolder = @"C:\Users\james\source\repos\jameswiseman76\UnitTestRunnerApiAdaptor\SampleUnderTest.Tests.XUnit\bin\Debug\netcoreapp3.1";
-            var dllFile = "SampleUnderTest.Tests.XUnit.dll";
-            var dllFullPath = Path.Combine(dllFolder, dllFile);
+            Console.WriteLine("Discovering...");
 
-            var assembly = Assembly.LoadFrom(dllFullPath);
+            runner.Start(parallel: false);
 
-            using (var runner = AssemblyRunner.WithoutAppDomain(assembly.Location))
-            {
-                runner.OnDiscoveryComplete = OnDiscoveryComplete;
-                runner.OnExecutionComplete = OnExecutionComplete;
-                runner.OnTestPassed = OnTestPassed;
-                runner.OnTestFailed = OnTestFailed;
-                runner.OnTestSkipped = OnTestSkipped;
+            Finished.WaitOne();
+            Finished.Dispose();
 
-                Console.WriteLine("Discovering...");
-
-                ////https://github.com/xunit/xunit/issues/1202
-                runner.Start(parallel: false);
-
-                Finished.WaitOne();
-                Finished.Dispose();
-            }
-
-            return new TestRunnerResults(true, TestRunnerType.NUnit);
+            return new TestRunnerResults(true, TestRunnerType.XUnit);
         }
 
         private static void OnDiscoveryComplete(DiscoveryCompleteInfo info)
@@ -88,9 +74,8 @@ namespace UnitTestRunnerApiAdaptor.Runners.XUnit
             lock (LoggerLock)
             {
                 Console.WriteLine($"Finished: {info.TotalTests} tests in {Math.Round(info.ExecutionTime, 3)}s ({info.TestsFailed} failed, {info.TestsSkipped} skipped)");
+                Finished.Set();
             }
-
-            Finished.Set();
         }
 
         private static void OnTestPassed(TestPassedInfo info)

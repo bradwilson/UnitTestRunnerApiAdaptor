@@ -18,12 +18,8 @@
             var nunitResults = RunNUnitTests();
             Console.WriteLine(nunitResults.Success);
 
-            var xunitResults = new TestRunner<XUnitTestRunner>()
-                .WithRunnerSettings(new TestRunnerSettings("", null))
-                .Run();
-
+            var xunitResults = RunXUnitTests();
             Console.WriteLine(xunitResults.Success);
-
         }
 
         private static TestRunnerResults RunMsTests()
@@ -50,11 +46,26 @@
                 new TestRunItem("SampleUnderTest.Tests.NUnit.MathServiceTests", "AddWithGivenInputsReturnsExpectedResults"),
                 new TestRunItem("SampleUnderTest.Tests.NUnit.MathServiceTests", "DoSomethingDoesABunchOfStuff"));
 
-            var msTestResults = new TestRunner<NUnitTestRunner>()
+            var nunitResults = new TestRunner<NUnitTestRunner>()
                 .WithRunnerSettings(new TestRunnerSettings(nunitDllFullName, nunitTestsToRun))
                 .Run();
 
-            return msTestResults;
+            return nunitResults;
+        }
+
+        private static TestRunnerResults RunXUnitTests()
+        {
+            var xunitDllFullName = @"C:\Users\james\source\repos\jameswiseman76\UnitTestRunnerApiAdaptor\SampleUnderTest.Tests.XUnit\bin\Debug\netcoreapp3.1\SampleUnderTest.Tests.XUnit.dll";
+
+            var xunitTestsToRun = ImmutableList.Create(
+                new TestRunItem("SampleUnderTest.Tests.XUnit.UnitTest1", "OneIsNotPrime"),
+                new TestRunItem("SampleUnderTest.Tests.XUnit.UnitTest1", "TwoIsPrime"));
+
+            var xunitResults = new TestRunner<XUnitTestRunner>()
+                .WithRunnerSettings(new TestRunnerSettings(xunitDllFullName, xunitTestsToRun))
+                .Run();
+
+            return xunitResults;
         }
     }
 }
