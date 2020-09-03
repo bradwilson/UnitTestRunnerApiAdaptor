@@ -15,10 +15,7 @@
             var msTestResults = RunMsTests();
             Console.WriteLine(msTestResults.Success);
 
-            var nunitResults = new TestRunner<NUnitTestRunner>()
-                .WithRunnerSettings(new TestRunnerSettings("", null))
-                .Run();
-
+            var nunitResults = RunNUnitTests();
             Console.WriteLine(nunitResults.Success);
 
             var xunitResults = new TestRunner<XUnitTestRunner>()
@@ -39,6 +36,22 @@
 
             var msTestResults = new TestRunner<MSTestRunner>()
                 .WithRunnerSettings(new TestRunnerSettings(msTestDllFullName, msTestsToRun))
+                .Run();
+
+            return msTestResults;
+        }
+
+        private static TestRunnerResults RunNUnitTests()
+        {
+            var nunitDllFullName = @"C:\Users\james\source\repos\jameswiseman76\UnitTestRunnerApiAdaptor\SampleUnderTest.NUnit\bin\Debug\netcoreapp3.1\SampleUnderTest.Tests.NUnit.dll";
+
+            var nunitTestsToRun = ImmutableList.Create(
+                new TestRunItem("SampleUnderTest.Tests.NUnit.PrimeServiceTests", "Test1"),
+                new TestRunItem("SampleUnderTest.Tests.NUnit.MathServiceTests", "AddWithGivenInputsReturnsExpectedResults"),
+                new TestRunItem("SampleUnderTest.Tests.NUnit.MathServiceTests", "DoSomethingDoesABunchOfStuff"));
+
+            var msTestResults = new TestRunner<NUnitTestRunner>()
+                .WithRunnerSettings(new TestRunnerSettings(nunitDllFullName, nunitTestsToRun))
                 .Run();
 
             return msTestResults;

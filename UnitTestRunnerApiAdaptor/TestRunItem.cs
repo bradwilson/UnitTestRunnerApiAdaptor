@@ -12,6 +12,7 @@
         {
             this.TestClassName = testClassName;
             this.TestName = testName;
+            this.FullyQualifiedTestName = $"{testClassName}.{testName}";
         }
 
         /// <summary>
@@ -23,5 +24,10 @@
         /// Gets the value denoting the name of the test to run.
         /// </summary>
         public string TestName { get; private set; }
+
+        /// <summary>
+        /// Gets the value denoting the name of the test to run.
+        /// </summary>
+        public string FullyQualifiedTestName { get; private set; }
     }
 }

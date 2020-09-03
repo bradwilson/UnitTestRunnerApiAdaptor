@@ -27,28 +27,21 @@
         /// <returns>   The Results of the test run. </returns>
         public TestRunnerResults Run()
         {
-            var dllFolder = @"C:\Users\james\source\repos\jameswiseman76\UnitTestRunnerApiAdaptor\SampleUnderTest.NUnit\bin\Debug\netcoreapp3.1";
-            var dllFile = "SampleUnderTest.Tests.NUnit.dll";
-            var dllFullPath = Path.Combine(dllFolder, dllFile);
-
             using ITestEngine nunitEngine = TestEngineActivator.CreateInstance();
-            nunitEngine.WorkDirectory = dllFolder;
+            nunitEngine.WorkDirectory = this.runnerSettings.TestAssemblyFullPath;
 
-            TestPackage package = new TestPackage(dllFullPath);
-            package.AddSetting("WorkDirectory", $"{dllFolder} PATH");
+            var package = new TestPackage(this.runnerSettings.TestAssemblyFullName);
+            package.AddSetting("WorkDirectory", $"{this.runnerSettings.TestAssemblyFullPath} PATH");
 
-            var filterService = nunitEngine.Services.GetService<ITestFilterService>();
-            ITestFilterBuilder builder = filterService.GetTestFilterBuilder();
+            var filter = this.GetTestFiter(nunitEngine);
 
-            var filter = builder.GetFilter();
-            var testListener = new MyTestEventListener();
-
-            // Get a runner for the test package
             using var runner = nunitEngine.GetRunner(package);
 
             // Run all the tests in the assembly
+            var testListener = new DefaultTestEventListener();
             var testResult = runner.Run(testListener, filter);
             var deserializedTestResults = Deserialize<TestRun>(testResult);
+
             System.Console.WriteLine(deserializedTestResults.TestSuites[0].Total);
 
             return new TestRunnerResults(true, TestRunnerType.NUnit);
@@ -62,6 +55,16 @@
 
             using var xmlNodeReader = new XmlNodeReader(xmlNode);
             return serializer.Deserialize(xmlNodeReader) as T;
+        }
+
+        private TestFilter GetTestFiter(ITestEngine nunitEngine)
+        {
+            var filterService = nunitEngine.Services.GetService<ITestFilterService>();
+            var builder = filterService.GetTestFilterBuilder();
+
+            this.runnerSettings.TestsToRun.ForEach(t => builder.AddTest(t.FullyQualifiedTestName));
+            var filter = builder.GetFilter();
+            return filter;
         }
     }
 }

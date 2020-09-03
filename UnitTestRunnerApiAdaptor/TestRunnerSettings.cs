@@ -1,6 +1,6 @@
 ﻿namespace UnitTestRunnerApiAdaptor
 {
-    using System;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System.Collections.Immutable;
     using System.IO;
 
@@ -22,6 +22,8 @@
         {
             this.TestAssemblyFullName = testAssemblyFullPath;
             this.TestsToRun = fullyQualifiedNamesOfTestsToRun;
+            this.TestAssemblyFullPath = Path.GetDirectoryName(this.TestAssemblyFullName);
+            this.TestAssemblyFileName = Path.GetFileName(this.TestAssemblyFullName);
         }
 
         /// <summary>
@@ -32,12 +34,12 @@
         /// <summary>
         /// Gets the value denoting the full path of the test assembly whose tests are to be executed.
         /// </summary>
-        public string TestAssemblyFullPath { get => Path.GetDirectoryName(this.TestAssemblyFullName); }
+        public string TestAssemblyFullPath { get; private set; }
 
         /// <summary>
         /// Gets the value denoting the file name of the test assembly whose tests are to be executed.
         /// </summary>
-        public string TestAssemblyFileName { get => Path.GetFileName(this.TestAssemblyFullName); }
+        public string TestAssemblyFileName { get; private set; }
 
         /// <summary>
         /// Gets the value denoting the list of tests to run. If this is omitted, all tests are run.

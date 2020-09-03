@@ -5,7 +5,7 @@ namespace UnitTestRunnerApiAdaptor.Runners.NUnit
     /// <summary>
     /// Sample Test Event Listener class.
     /// </summary>
-    public class MyTestEventListener : ITestEventListener
+    public class DefaultTestEventListener : ITestEventListener
     {
         /// <summary>
         /// Implementation of ITestEventListener.OnTestEvent method.
@@ -13,7 +13,7 @@ namespace UnitTestRunnerApiAdaptor.Runners.NUnit
         /// <param name="report">The test event report.</param>
         public void OnTestEvent(string report)
         {
-            //// System.Console.WriteLine(report);
+            System.Console.WriteLine(report);
         }
     }
 }

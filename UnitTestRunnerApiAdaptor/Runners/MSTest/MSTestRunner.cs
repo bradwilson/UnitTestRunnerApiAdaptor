@@ -4,7 +4,6 @@
 namespace UnitTestRunnerApiAdaptor.Runners.MSTest
 {
     using System;
-    using System.IO;
     using System.Linq;
     using Microsoft.VisualStudio.TestPlatform.MSTestFramework;
 
