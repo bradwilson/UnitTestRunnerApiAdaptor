@@ -8,10 +8,10 @@
         /// <summary>   Include runner settings for the test run. </summary>
         /// <param name="runnerSettings">   The runner settings. </param>
         /// <returns>   The current instance of this TestRunner. </returns>
-        ITestRunner<T> WithRunnerSettings(RunnerSettings runnerSettings);
+        ITestRunner<T> WithRunnerSettings(TestRunnerSettings runnerSettings);
 
         /// <summary>   Runs the tests. </summary>
         /// <returns>   The Results of the test run. </returns>
-        RunnerResults Run();
+        TestRunnerResults Run();
     }
 }

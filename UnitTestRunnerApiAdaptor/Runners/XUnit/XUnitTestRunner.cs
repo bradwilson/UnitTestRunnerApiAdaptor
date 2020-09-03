@@ -21,12 +21,12 @@ namespace UnitTestRunnerApiAdaptor.Runners.XUnit
         // Use an event to know when we're done
         private static readonly ManualResetEvent Finished = new ManualResetEvent(false);
 
-        private RunnerSettings runnerSettings;
+        private TestRunnerSettings runnerSettings;
 
         /// <summary>   Include runner settings for the test run. </summary>
         /// <param name="runnerSettings">   The runner settings. </param>
         /// <returns>   The current instance of this TestRunner. </returns>
-        public ITestRunner<XUnitTestRunner> WithRunnerSettings(RunnerSettings runnerSettings)
+        public ITestRunner<XUnitTestRunner> WithRunnerSettings(TestRunnerSettings runnerSettings)
         {
             this.runnerSettings = runnerSettings;
             return this;
@@ -34,7 +34,7 @@ namespace UnitTestRunnerApiAdaptor.Runners.XUnit
 
         /// <summary>   Runs the tests. </summary>
         /// <returns>   The Results of the test run. </returns>
-        public RunnerResults Run()
+        public TestRunnerResults Run()
         {
             //// https://github.com/xunit/xunit/issues/542
             //// https://github.com/xunit/samples.xunit/blob/main/TestRunner/Program.cs
@@ -72,7 +72,7 @@ namespace UnitTestRunnerApiAdaptor.Runners.XUnit
                 Finished.Dispose();
             }
 
-            return new RunnerResults(true, TestRunnerType.NUnit);
+            return new TestRunnerResults(true, TestRunnerType.NUnit);
         }
 
         private static void OnDiscoveryComplete(DiscoveryCompleteInfo info)

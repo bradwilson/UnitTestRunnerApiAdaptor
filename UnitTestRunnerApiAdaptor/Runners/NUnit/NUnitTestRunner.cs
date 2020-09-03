@@ -12,12 +12,12 @@
     /// </summary>
     public class NUnitTestRunner : ITestRunner<NUnitTestRunner>
     {
-        private RunnerSettings runnerSettings;
+        private TestRunnerSettings runnerSettings;
 
         /// <summary>   Include runner settings for the test run. </summary>
         /// <param name="runnerSettings">   The runner settings. </param>
         /// <returns>   The current instance of this TestRunner. </returns>
-        public ITestRunner<NUnitTestRunner> WithRunnerSettings(RunnerSettings runnerSettings)
+        public ITestRunner<NUnitTestRunner> WithRunnerSettings(TestRunnerSettings runnerSettings)
         {
             this.runnerSettings = runnerSettings;
             return this;
@@ -25,13 +25,12 @@
 
         /// <summary>   Runs the tests. </summary>
         /// <returns>   The Results of the test run. </returns>
-        public RunnerResults Run()
+        public TestRunnerResults Run()
         {
             var dllFolder = @"C:\Users\james\source\repos\jameswiseman76\UnitTestRunnerApiAdaptor\SampleUnderTest.NUnit\bin\Debug\netcoreapp3.1";
             var dllFile = "SampleUnderTest.Tests.NUnit.dll";
             var dllFullPath = Path.Combine(dllFolder, dllFile);
 
-            // C#8!
             using ITestEngine nunitEngine = TestEngineActivator.CreateInstance();
             nunitEngine.WorkDirectory = dllFolder;
 
@@ -52,7 +51,7 @@
             var deserializedTestResults = Deserialize<TestRun>(testResult);
             System.Console.WriteLine(deserializedTestResults.TestSuites[0].Total);
 
-            return new RunnerResults(true, TestRunnerType.NUnit);
+            return new TestRunnerResults(true, TestRunnerType.NUnit);
         }
 
         private static T Deserialize<T>(XmlNode xmlNode)

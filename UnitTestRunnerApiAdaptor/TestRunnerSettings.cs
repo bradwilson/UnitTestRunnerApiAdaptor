@@ -6,16 +6,16 @@
     /// <summary>
     /// Contains the runner settings.
     /// </summary>
-    public class RunnerSettings
+    public class TestRunnerSettings
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="RunnerSettings"/> class.
+        /// Initializes a new instance of the <see cref="TestRunnerSettings"/> class.
         /// </summary>
         /// <param name="testAssemblyFullPath">Sets the full path of the test assembly whose test we are wating to execute.</param>
         /// <param name="fullyQualifiedNamesOfTestsToRun">
         /// A list of test names to run. Fully qualified with Namespace.TestClass.TestMethod.
         /// </param>
-        public RunnerSettings(
+        public TestRunnerSettings(
             string testAssemblyFullPath,
             ImmutableList<TestRunItem> fullyQualifiedNamesOfTestsToRun)
         {

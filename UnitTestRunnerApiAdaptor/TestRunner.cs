@@ -18,14 +18,14 @@
         /// <summary>   Include runner settings for the test run. </summary>
         /// <param name="runnerSettings">   The runner settings. </param>
         /// <returns>   The current instance of this TestRunner. </returns>
-        public ITestRunner<T> WithRunnerSettings(RunnerSettings runnerSettings)
+        public ITestRunner<T> WithRunnerSettings(TestRunnerSettings runnerSettings)
         {
             return this.testRunner.WithRunnerSettings(runnerSettings);
         }
 
         /// <summary>   Runs the tests. </summary>
         /// <returns>   The Results of the test run. </returns>
-        public RunnerResults Run()
+        public TestRunnerResults Run()
         {
             return this.testRunner.Run();
         }

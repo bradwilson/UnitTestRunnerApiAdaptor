@@ -16,20 +16,20 @@
             Console.WriteLine(msTestResults.Success);
 
             var nunitResults = new TestRunner<NUnitTestRunner>()
-                .WithRunnerSettings(new RunnerSettings("", null))
+                .WithRunnerSettings(new TestRunnerSettings("", null))
                 .Run();
 
             Console.WriteLine(nunitResults.Success);
 
             var xunitResults = new TestRunner<XUnitTestRunner>()
-                .WithRunnerSettings(new RunnerSettings("", null))
+                .WithRunnerSettings(new TestRunnerSettings("", null))
                 .Run();
 
             Console.WriteLine(xunitResults.Success);
 
         }
 
-        private static RunnerResults RunMsTests()
+        private static TestRunnerResults RunMsTests()
         {
             var msTestDllFullName = @"C:\Users\james\source\repos\jameswiseman76\UnitTestRunnerApiAdaptor\SampleUnderTest.Test.MSTest\bin\Debug\netcoreapp3.1\SampleUnderTest.Test.MSTest.dll";
 
@@ -38,7 +38,7 @@
                 new TestRunItem("SampleUnderTest.Test.MSTest.MathServiceTests", "DoSomethingDoesABunchOfStuff"));
 
             var msTestResults = new TestRunner<MSTestRunner>()
-                .WithRunnerSettings(new RunnerSettings(msTestDllFullName, msTestsToRun))
+                .WithRunnerSettings(new TestRunnerSettings(msTestDllFullName, msTestsToRun))
                 .Run();
 
             return msTestResults;

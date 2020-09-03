@@ -1,17 +1,17 @@
 ﻿namespace UnitTestRunnerApiAdaptor
 {
     /// <summary>   The results for the test execution. </summary>
-    public class RunnerResults
+    public class TestRunnerResults
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="RunnerResults"/> class.   Constructor. </summary>
+        /// Initializes a new instance of the <see cref="TestRunnerResults"/> class.   Constructor. </summary>
         /// <param name="success">
         /// A value indicating whether the test run was a success.
         /// </param>
         /// <param name="testRunnerType">
         /// Gets the value denoting the type of the test runner to run.
         /// </param>
-        public RunnerResults(bool success, TestRunnerType testRunnerType)
+        public TestRunnerResults(bool success, TestRunnerType testRunnerType)
         {
             this.Success = success;
             this.TestRunnerType = testRunnerType;

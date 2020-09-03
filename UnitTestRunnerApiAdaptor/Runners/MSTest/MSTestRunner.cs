@@ -13,12 +13,12 @@ namespace UnitTestRunnerApiAdaptor.Runners.MSTest
     /// </summary>
     public class MSTestRunner : ITestRunner<MSTestRunner>
     {
-        private RunnerSettings runnerSettings;
+        private TestRunnerSettings runnerSettings;
 
         /// <summary>   Include runner settings for the test run. </summary>
         /// <param name="runnerSettings">   The runner settings. </param>
         /// <returns>   The current instance of this TestRunner. </returns>
-        public ITestRunner<MSTestRunner> WithRunnerSettings(RunnerSettings runnerSettings)
+        public ITestRunner<MSTestRunner> WithRunnerSettings(TestRunnerSettings runnerSettings)
         {
             this.runnerSettings = runnerSettings;
             return this;
@@ -26,7 +26,7 @@ namespace UnitTestRunnerApiAdaptor.Runners.MSTest
 
         /// <summary>   Runs the tests. </summary>
         /// <returns>   The Results of the test run. </returns>
-        public RunnerResults Run()
+        public TestRunnerResults Run()
         {
             var testDeployer = new TestDeployer();
 
@@ -50,7 +50,7 @@ namespace UnitTestRunnerApiAdaptor.Runners.MSTest
                 }
             }
 
-            return new RunnerResults(true, TestRunnerType.MSTest);
+            return new TestRunnerResults(true, TestRunnerType.MSTest);
         }
     }
 }
