@@ -30,9 +30,9 @@ namespace UnitTestRunnerApiAdaptor.Runners.MSTest
         {
             var testDeployer = new TestDeployer();
 
-            var deploymentPath = testDeployer.DeployItems(Path.GetDirectoryName(this.runnerSettings.TestAssemblyFullPath));
+            var deploymentPath = testDeployer.DeployItems(this.runnerSettings.TestAssemblyFullPath);
 
-            var testRunner = new UnitTestRunner(deploymentPath, this.runnerSettings.TestAssemblyFullPath, false, 1000);
+            var testRunner = new UnitTestRunner(deploymentPath, this.runnerSettings.TestAssemblyFullName, false, 1000);
 
             var testResults = this.runnerSettings.TestsToRun.ToDictionary(
                 x => x,

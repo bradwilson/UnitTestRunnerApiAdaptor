@@ -2,3 +2,12 @@
 
 # SA1633: File should have header
 dotnet_diagnostic.SA1633.severity = none
+
+# IDE0025: Use expression body for properties
+csharp_style_expression_bodied_properties = false:silent
+
+# IDE0003: Remove qualification
+dotnet_style_qualification_for_event = false:silent
+
+# IDE0003: Remove qualification
+dotnet_style_qualification_for_field = false:silent

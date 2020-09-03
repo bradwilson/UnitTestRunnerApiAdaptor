@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Immutable;
+    using System.IO;
 
     /// <summary>
     /// Contains the runner settings.
@@ -19,14 +20,24 @@
             string testAssemblyFullPath,
             ImmutableList<TestRunItem> fullyQualifiedNamesOfTestsToRun)
         {
-            this.TestAssemblyFullPath = testAssemblyFullPath;
+            this.TestAssemblyFullName = testAssemblyFullPath;
             this.TestsToRun = fullyQualifiedNamesOfTestsToRun;
         }
 
         /// <summary>
-        /// Gets the value denoting the full path of the test assembly whose test we are wating to execute.
+        /// Gets the value denoting the full path and file name of the test assembly whose tests are to be executed.
         /// </summary>
-        public string TestAssemblyFullPath { get; private set; }
+        public string TestAssemblyFullName { get; private set; }
+
+        /// <summary>
+        /// Gets the value denoting the full path of the test assembly whose tests are to be executed.
+        /// </summary>
+        public string TestAssemblyFullPath { get => Path.GetDirectoryName(this.TestAssemblyFullName); }
+
+        /// <summary>
+        /// Gets the value denoting the file name of the test assembly whose tests are to be executed.
+        /// </summary>
+        public string TestAssemblyFileName { get => Path.GetFileName(this.TestAssemblyFullName); }
 
         /// <summary>
         /// Gets the value denoting the list of tests to run. If this is omitted, all tests are run.
