@@ -1,7 +1,7 @@
 ﻿/// <summary>
 /// Main MStest test runner class
 /// </summary>
-namespace UnitTestRunnerApiAdaptor.MSTest
+namespace UnitTestRunnerApiAdaptor.Runners.MSTest
 {
     using System;
     using System.Collections.Generic;

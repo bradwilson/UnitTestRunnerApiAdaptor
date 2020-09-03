@@ -1,4 +1,4 @@
-namespace TestApiRunner.NUnit
+namespace UnitTestRunnerApiAdaptor.Runners.NUnit
 {
     using global::NUnit.Engine;
 

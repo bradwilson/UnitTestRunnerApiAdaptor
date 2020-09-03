@@ -2,10 +2,10 @@
 {
     using System;
     using System.Collections.Immutable;
-    using TestApiRunner.NUnit;
     using UnitTestRunnerApiAdaptor;
-    using UnitTestRunnerApiAdaptor.MSTest;
-    using UnitTestRunnerApiAdaptor.XUnit;
+    using UnitTestRunnerApiAdaptor.Runners.MSTest;
+    using UnitTestRunnerApiAdaptor.Runners.NUnit;
+    using UnitTestRunnerApiAdaptor.Runners.XUnit;
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:Elements should be documented", Justification = "Not required for XML Serialization")]
     public class Program

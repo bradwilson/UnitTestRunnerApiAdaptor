@@ -1,7 +1,7 @@
 ﻿/// <summary>
 /// Main XUnit test runner class
 /// </summary>
-namespace UnitTestRunnerApiAdaptor.XUnit
+namespace UnitTestRunnerApiAdaptor.Runners.XUnit
 {
     using System;
     using System.IO;

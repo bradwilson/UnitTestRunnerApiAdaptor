@@ -1,11 +1,11 @@
-﻿namespace TestApiRunner.NUnit
+﻿namespace UnitTestRunnerApiAdaptor.Runners.NUnit
 {
     using System.IO;
     using System.Xml;
     using System.Xml.Serialization;
     using global::NUnit.Engine;
-    using TestApiRunner.NUnit.Serialization;
     using UnitTestRunnerApiAdaptor;
+    using UnitTestRunnerApiAdaptor.Runners.NUnit.Serialization;
 
     /// <summary>
     /// Entry point to the main NUnit test runner.

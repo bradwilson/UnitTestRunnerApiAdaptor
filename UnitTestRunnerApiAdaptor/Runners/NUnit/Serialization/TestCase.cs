@@ -1,4 +1,4 @@
-﻿namespace TestApiRunner.NUnit.Serialization
+﻿namespace UnitTestRunnerApiAdaptor.Runners.NUnit.Serialization
 {
     using System.Xml.Serialization;
 
