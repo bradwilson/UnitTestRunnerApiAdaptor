@@ -6,6 +6,10 @@
     <IsPackable>false</IsPackable>
 
     <OutputType>Library</OutputType>
+
+    <SignAssembly>true</SignAssembly>
+
+    <AssemblyOriginatorKeyFile>UnitTestRunnerApiAdaptor.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
   <ItemGroup>
