@@ -4,8 +4,6 @@
 namespace UnitTestRunnerApiAdaptor.Runners.MSTest
 {
     using System;
-    using System.Collections.Generic;
-    using System.Collections.Immutable;
     using System.IO;
     using System.Linq;
     using Microsoft.VisualStudio.TestPlatform.MSTestFramework;
@@ -44,11 +42,11 @@ namespace UnitTestRunnerApiAdaptor.Runners.MSTest
             {
                 if (result.Value.Outcome == UnitTestOutcome.Passed)
                 {
-                    Console.WriteLine($"{result.Key} Test Case Passed");
+                    Console.WriteLine($"MSTest: {result.Key.TestClassName}.{result.Key.TestName} Test Case Passed");
                 }
                 else
                 {
-                    Console.WriteLine($"{result.Key} Test Case Failed with error ${result.Value.ErrorMessage}");
+                    Console.WriteLine($"MSTest: {result.Key} Test Case Failed with error ${result.Value.ErrorMessage}");
                 }
             }
 
