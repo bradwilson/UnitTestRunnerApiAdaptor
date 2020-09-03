@@ -3,7 +3,7 @@ namespace UnitTestRunnerApiAdaptor.Runners.NUnit
     using global::NUnit.Engine;
 
     /// <summary>
-    /// Sample Test Event Listener class.
+    /// Default Test Event Listener class.
     /// </summary>
     public class DefaultTestEventListener : ITestEventListener
     {
