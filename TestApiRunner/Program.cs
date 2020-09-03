@@ -1,6 +1,7 @@
 ﻿namespace TestApiRunner
 {
     using System;
+    using System.Collections.Immutable;
     using TestApiRunner.NUnit;
     using UnitTestRunnerApiAdaptor;
     using UnitTestRunnerApiAdaptor.MSTest;
@@ -11,8 +12,14 @@
     {
         static void Main(string[] args)
         {
+            var msTestDllFullName = @"C:\Users\james\source\repos\jameswiseman76\UnitTestRunnerApiAdaptor\SampleUnderTest.Test.MSTest\bin\Debug\netcoreapp3.1\SampleUnderTest.Test.MSTest.dll";
+
+            var msTestsToRun = ImmutableList.Create(
+                new TestRunItem("SampleUnderTest.Test.MSTest.MathServiceTests", "AddWithGivenInputsReturnsExpectedResults"),
+                new TestRunItem("SampleUnderTest.Test.MSTest.MathServiceTests", "DoSomethingDoesABunchOfStuff"));
+
             var msTestResults = new TestRunner<MSTestRunner>()
-                .WithRunnerSettings(new RunnerSettings("", null))
+                .WithRunnerSettings(new RunnerSettings(msTestDllFullName, msTestsToRun))
                 .Run();
 
             Console.WriteLine(msTestResults.Success);

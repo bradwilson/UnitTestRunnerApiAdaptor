@@ -1,5 +1,6 @@
 ﻿namespace UnitTestRunnerApiAdaptor
 {
+    using System;
     using System.Collections.Immutable;
 
     /// <summary>
@@ -16,24 +17,24 @@
         /// </param>
         public RunnerSettings(
             string testAssemblyFullPath,
-            ImmutableList<string> fullyQualifiedNamesOfTestsToRun)
+            ImmutableList<TestRunItem> fullyQualifiedNamesOfTestsToRun)
         {
             this.TestAssemblyFullPath = testAssemblyFullPath;
             this.TestsToRun = fullyQualifiedNamesOfTestsToRun;
         }
 
         /// <summary>
-        /// Gets the property denoting the full path of the test assembly whose test we are wating to execute.
+        /// Gets the value denoting the full path of the test assembly whose test we are wating to execute.
         /// </summary>
         public string TestAssemblyFullPath { get; private set; }
 
         /// <summary>
-        /// Gets the property denoting the list of tests to run. If this is omitted, all tests are run.
+        /// Gets the value denoting the list of tests to run. If this is omitted, all tests are run.
         /// </summary>
-        public ImmutableList<string> TestsToRun { get; private set; }
+        public ImmutableList<TestRunItem> TestsToRun { get; private set; }
 
         /// <summary>
-        /// Gets the proeprty denoting the type of the test runner to run.
+        /// Gets the value denoting the type of the test runner to run.
         /// </summary>
         public TestRunnerType TestRunnerType { get; private set; }
     }
