@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "VSTestConsoleWrapperRuner": {
+      "commandName": "Project",
+      "commandLineArgs": "--runner:\"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\Common7\\IDE\\CommonExtensions\\Microsoft\\TestWindow\\VsTest\\vstest.console.dll\"  --testassembly:\"C:\\Users\\james\\source\\repos\\jameswiseman76\\UnitTestRunnerApiAdaptor\\SampleUnderTest.Test.MSTest\\bin\\Debug\\netcoreapp3.1\\SampleUnderTest.Test.MSTest.dll\" --testadapterpath:\"C:\\Users\\james\\source\\repos\\jameswiseman76\\UnitTestRunnerApiAdaptor\\VSTestConsoleWrapperRuner\\bin\\Release\\netcoreapp3.1\\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll\""
+    }
+  }
+}

@@ -1,6 +1,5 @@
 ﻿namespace UnitTestRunnerApiAdaptor
 {
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System.Collections.Immutable;
     using System.IO;
 

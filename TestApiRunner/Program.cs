@@ -10,7 +10,7 @@
     [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:Elements should be documented", Justification = "Not required")]
     public class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             var msTestResults = RunMsTests();
             Console.WriteLine(msTestResults.Success);

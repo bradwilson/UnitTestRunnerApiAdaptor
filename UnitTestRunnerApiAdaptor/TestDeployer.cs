@@ -10,7 +10,7 @@
     {
         private const string TestRunnerFolder = "TestRunner";
 
-        private string deploymentPathRoot;
+        private readonly string deploymentPathRoot;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TestDeployer"/> class.

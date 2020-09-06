@@ -34,7 +34,7 @@
             return DewPoint;
         }
 
-        public int ChainedOperators(int w, int x, int y, int z)
+        public int ChainedOperators(int w, int x, int y)
         {
             return w * x * y;
         }
