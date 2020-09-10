@@ -7,6 +7,7 @@ namespace UnitTestRunnerApiAdaptor.XUnit
     using System.IO;
     using System.Reflection;
     using System.Threading;
+    using Xunit;
     using Xunit.Runners;
 
     /// <summary>
@@ -39,12 +40,13 @@ namespace UnitTestRunnerApiAdaptor.XUnit
             //// var location = new Uri(codeBase).LocalPath;
             //// var assembly = Assembly.Load(new AssemblyName("SampleUnderTest.Tests.XUnit"));
 
-            var dllFolder = @"C:\Users\james\source\repos\jameswiseman76\UnitTestRunnerApiAdaptor\SampleUnderTest.Tests.XUnit\bin\Debug\netcoreapp3.1";
+            var dllFolder = @"C:\Dev\repro\xunit-2140\SampleUnderTest.Tests.XUnit\bin\Debug\netcoreapp3.1";
             var dllFile = "SampleUnderTest.Tests.XUnit.dll";
             var dllFullPath = Path.Combine(dllFolder, dllFile);
 
             var assembly = Assembly.LoadFrom(dllFullPath);
 
+            using (AssemblyHelper.SubscribeResolveForAssembly(assembly.Location))
             using (var runner = AssemblyRunner.WithoutAppDomain(assembly.Location))
             {
                 runner.OnDiscoveryComplete = OnDiscoveryComplete;
